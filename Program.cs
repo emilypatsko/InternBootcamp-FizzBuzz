@@ -61,19 +61,55 @@ namespace FizzBuzz_CSharp
             }
         }
 
-        static void Main(string[] args)
+        static void FizzBuzz(string[] args)
         {
-            for (int i = 1; i <= 255; i++)
+            Dictionary<string, bool> rules = new Dictionary<string, bool>
+            {
+                { "fizz", true },
+                { "buzz", true },
+                { "bang", true },
+                { "bong", true },
+                { "fezz", true },
+                { "reverse", true },
+            };
+            int length = 100;
+
+            if (args.Length > 0)
+            {
+                length = Int32.TryParse(args[0], out length) ? length : 100;
+            
+                if (args.Length > 1)
+                {
+                    foreach (var rule in rules)
+                    {
+                        if (Array.IndexOf(args, rule.Key) > -1)
+                        {
+                            rules[rule.Key] = true;
+                        }
+                        else 
+                        {
+                            rules[rule.Key] = false;
+                        }
+                    }
+                }                
+            }
+
+            for (int i = 1; i <= length; i++)
             {
                 List<string> thingToPrint = new List<string>();
-                FizzRule(i, thingToPrint);
-                BuzzRule(i, thingToPrint);
-                BangRule(i, thingToPrint);
-                BongRule(i, thingToPrint);
-                FezzRule(i, thingToPrint);
-                ReverseRule(i, thingToPrint);
+                if (rules["fizz"]) FizzRule(i, thingToPrint);
+                if (rules["buzz"]) BuzzRule(i, thingToPrint);
+                if (rules["bang"]) BangRule(i, thingToPrint);
+                if (rules["bong"]) BongRule(i, thingToPrint);
+                if (rules["fezz"]) FezzRule(i, thingToPrint);
+                if (rules["reverse"]) ReverseRule(i, thingToPrint);
                 Console.WriteLine(thingToPrint.Count == 0 ? i : string.Join("", thingToPrint));
             }
+        }
+        
+        static void Main(string[] args)
+        {
+            FizzBuzz(args);
         }
     }
 }
