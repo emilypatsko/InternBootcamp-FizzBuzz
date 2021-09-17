@@ -28,6 +28,14 @@ namespace FizzBuzz_CSharp
             }
         }
 
+        static void BongRule(int num, ref string thingToPrint)
+        {
+            if (num % 11 == 0)
+            {
+                thingToPrint = "Bong";
+            }
+        }
+
         static void Main(string[] args)
         {
             for (int i = 1; i <= 105; i++)
@@ -36,6 +44,7 @@ namespace FizzBuzz_CSharp
                 FizzRule(i, ref thingToPrint);
                 BuzzRule(i, ref thingToPrint);
                 BangRule(i, ref thingToPrint);
+                BongRule(i, ref thingToPrint);
                 Console.WriteLine(thingToPrint != "" ? thingToPrint : i.ToString());
             }
         }
