@@ -1,68 +1,78 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FizzBuzz_CSharp
 {
     class Program
     {
-        static void FizzRule(int num, ref string thingToPrint)
+        static void FizzRule(int num, List<string> thingToPrint)
         {
             if (num % 3 == 0)
             {
-                thingToPrint += "Fizz";
+                thingToPrint.Add("Fizz");
             }
         }
 
-        static void BuzzRule(int num, ref string thingToPrint)
+        static void BuzzRule(int num, List<string> thingToPrint)
         {
             if (num % 5 == 0)
             {
-                thingToPrint += "Buzz";
+                thingToPrint.Add("Buzz");
             }
         }
 
-        static void BangRule(int num, ref string thingToPrint)
+        static void BangRule(int num, List<string> thingToPrint)
         {
             if (num % 7 == 0)
             {
-                thingToPrint += "Bang";
+                thingToPrint.Add("Bang");
             }
         }
 
-        static void BongRule(int num, ref string thingToPrint)
+        static void BongRule(int num, List<string> thingToPrint)
         {
             if (num % 11 == 0)
             {
-                thingToPrint = "Bong";
+                thingToPrint = new List<string>{ "Bong" };
             }
         }
 
-        static void FezzRule(int num, ref string thingToPrint)
+        static void FezzRule(int num, List<string> thingToPrint)
         {
             if (num % 13 == 0)
             {
-                int indexOfFirstB = thingToPrint.IndexOf("B");
+                int indexOfFirstB = thingToPrint.FindIndex(e => e.StartsWith("B"));
                 if (indexOfFirstB > -1)
                 {
-                    thingToPrint = thingToPrint.Substring(0, indexOfFirstB) + "Fezz" + thingToPrint.Substring(indexOfFirstB);
+                    thingToPrint.Insert(indexOfFirstB, "Fezz");
                 }
                 else
                 {
-                    thingToPrint += "Fezz";
+                    thingToPrint.Add("Fezz");
                 }
+            }
+        }
+
+        static void ReverseRule(int num, List<string> thingToPrint)
+        {
+            if (num % 17 == 0)
+            {
+                thingToPrint.Reverse();
             }
         }
 
         static void Main(string[] args)
         {
-            for (int i = 1; i <= 195; i++)
+            for (int i = 1; i <= 255; i++)
             {
-                string thingToPrint = "";
-                FizzRule(i, ref thingToPrint);
-                BuzzRule(i, ref thingToPrint);
-                BangRule(i, ref thingToPrint);
-                BongRule(i, ref thingToPrint);
-                FezzRule(i, ref thingToPrint);
-                Console.WriteLine(thingToPrint != "" ? thingToPrint : i.ToString());
+                List<string> thingToPrint = new List<string>();
+                FizzRule(i, thingToPrint);
+                BuzzRule(i, thingToPrint);
+                BangRule(i, thingToPrint);
+                BongRule(i, thingToPrint);
+                FezzRule(i, thingToPrint);
+                ReverseRule(i, thingToPrint);
+                Console.WriteLine(thingToPrint.Count == 0 ? i : string.Join("", thingToPrint));
             }
         }
     }
