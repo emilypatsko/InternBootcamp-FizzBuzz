@@ -36,15 +36,32 @@ namespace FizzBuzz_CSharp
             }
         }
 
+        static void FezzRule(int num, ref string thingToPrint)
+        {
+            if (num % 13 == 0)
+            {
+                int indexOfFirstB = thingToPrint.IndexOf("B");
+                if (indexOfFirstB > -1)
+                {
+                    thingToPrint = thingToPrint.Substring(0, indexOfFirstB) + "Fezz" + thingToPrint.Substring(indexOfFirstB);
+                }
+                else
+                {
+                    thingToPrint += "Fezz";
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
-            for (int i = 1; i <= 105; i++)
+            for (int i = 1; i <= 195; i++)
             {
                 string thingToPrint = "";
                 FizzRule(i, ref thingToPrint);
                 BuzzRule(i, ref thingToPrint);
                 BangRule(i, ref thingToPrint);
                 BongRule(i, ref thingToPrint);
+                FezzRule(i, ref thingToPrint);
                 Console.WriteLine(thingToPrint != "" ? thingToPrint : i.ToString());
             }
         }
