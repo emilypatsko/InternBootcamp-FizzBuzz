@@ -20,13 +20,22 @@ namespace FizzBuzz_CSharp
             }
         }
 
+        static void BangRule(int num, ref string thingToPrint)
+        {
+            if (num % 7 == 0)
+            {
+                thingToPrint += "Bang";
+            }
+        }
+
         static void Main(string[] args)
         {
-            for (int i = 1; i <= 100; i++)
+            for (int i = 1; i <= 105; i++)
             {
                 string thingToPrint = "";
                 FizzRule(i, ref thingToPrint);
                 BuzzRule(i, ref thingToPrint);
+                BangRule(i, ref thingToPrint);
                 Console.WriteLine(thingToPrint != "" ? thingToPrint : i.ToString());
             }
         }
