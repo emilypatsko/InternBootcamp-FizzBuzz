@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FizzBuzz_CSharp
 {
@@ -109,7 +110,10 @@ namespace FizzBuzz_CSharp
         
         static void Main(string[] args)
         {
-            FizzBuzz(args);
+            // FizzBuzz(args);
+
+            // Single line version
+            Enumerable.Range(1, 100).ToList().ForEach(i => Console.WriteLine(i % 3 != 0 && i % 5 != 0 && i % 7 != 0 ? i.ToString() : $"{(i % 3 == 0 ? "Fizz" : "")}{(i % 5 == 0 ? "Buzz" : "")}{(i % 7 == 0 ? "Bang" : "")}"));
         }
     }
 }
