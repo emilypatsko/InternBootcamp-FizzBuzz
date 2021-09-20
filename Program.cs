@@ -34,7 +34,8 @@ namespace FizzBuzz_CSharp
         {
             if (num % 11 == 0)
             {
-                thingToPrint = new List<string>{ "Bong" };
+                thingToPrint.Clear();
+                thingToPrint.Add("Bong");
             }
         }
 
@@ -104,16 +105,16 @@ namespace FizzBuzz_CSharp
                 if (rules["bong"]) BongRule(i, thingToPrint);
                 if (rules["fezz"]) FezzRule(i, thingToPrint);
                 if (rules["reverse"]) ReverseRule(i, thingToPrint);
-                Console.WriteLine(thingToPrint.Count == 0 ? i : string.Join("", thingToPrint));
+                Console.WriteLine(!thingToPrint.Any() ? i : string.Join("", thingToPrint));
             }
         }
         
         static void Main(string[] args)
         {
-            // FizzBuzz(args);
+            FizzBuzz(args);
 
             // Single line version
-            Enumerable.Range(1, 100).ToList().ForEach(i => Console.WriteLine(i % 3 != 0 && i % 5 != 0 && i % 7 != 0 ? i.ToString() : $"{(i % 3 == 0 ? "Fizz" : "")}{(i % 5 == 0 ? "Buzz" : "")}{(i % 7 == 0 ? "Bang" : "")}"));
+            // Enumerable.Range(1, 100).ToList().ForEach(i => Console.WriteLine(i % 3 != 0 && i % 5 != 0 && i % 7 != 0 ? i.ToString() : $"{(i % 3 == 0 ? "Fizz" : "")}{(i % 5 == 0 ? "Buzz" : "")}{(i % 7 == 0 ? "Bang" : "")}"));
         }
     }
 }
